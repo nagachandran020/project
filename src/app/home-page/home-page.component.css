@@ -1,0 +1,32 @@
+
+
+
+.loginDiv {
+    margin-top: 12%;
+    border-radius: 15px;
+    background-color: lightblue;
+    padding: 10px 10px 10px 10px;
+}
+.registerDiv {
+    margin-top: 12%;
+    border-radius: 15px;
+    background-color: lightblue;
+    padding: 10px 10px 10px 10px;
+
+}
+
+
+
+
+/* form :invalid{
+    color: red;
+}
+
+form :valid{
+    color: green;
+} */
+
+
+
+
+

@@ -1,0 +1,258 @@
+
+    <!-- <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head> -->
+        <div fxLayout="column" fxLayoutAlign="center center"
+            *ngIf="isRegisterOption != 'isRegisterStudent'  && isRegisterOption != 'isRegisterStaff'">
+            <mat-card class="loginDiv">
+                <form >
+                    <div fxLayout="column" fxLayoutAlign="start center">
+                        <img src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-HD-Image.png"
+                            width="200" />&nbsp;
+                    </div>
+                    <mat-form-field  appearance="outline">
+                        <mat-label>Username</mat-label>
+                        <input [(ngModel)]="loginDetails.email" name="userName" matInput type="email" required  />
+                    </mat-form-field><br>
+        
+                    <mat-form-field  appearance="outline">
+                        <mat-label>Password</mat-label> 
+                        <input [(ngModel)]="loginDetails.password" name="userPassword"  matInput type="password" required />
+                    </mat-form-field>
+                    <span fxLayout="column">Do you haven't account</span>
+                    <div>
+                        <div fxLayout="row" fxLayoutAlign="start center">
+                            <span fxLayout="column" fxLayoutAlign="start center">Register As</span><br>
+                            <mat-radio-group [(ngModel)]="isRegisterOption" name="radio">
+                                <mat-radio-button value="isRegisterStudent">Student</mat-radio-button>
+                                <mat-radio-button value="isRegisterStaff">Staff</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                    <div fxLayout="column">
+                        <button mat-raised-button color="primary" (click)="loginUserDetails()"
+                            [disabled]="!loginDetails.email || !loginDetails.password">Submit
+                        </button>
+                    </div>
+                </form>
+            </mat-card>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="center center" *ngIf="isRegisterOption == 'isRegisterStudent' || isRegisterOption == 'isRegisterStaff'">
+            <mat-card class="registerDiv" >
+                <form [formGroup]="registerForm"  (ngSubmit)="saveUserDetails()">
+                    <!--This for students registration-->
+                    <mat-card-title fxLayout="column" fxLayoutAlign="start center"
+                        *ngIf="isRegisterOption == 'isRegisterStudent'">Student Profile
+                    </mat-card-title><br>
+                    <mat-card-title fxLayout="column" fxLayoutAlign="start center"
+                        *ngIf="isRegisterOption == 'isRegisterStaff'">Admin Profile
+                    </mat-card-title><br>
+
+                    <div fxLayout="row" fxLayoutAlign="start center" *ngIf="isRegisterOption == 'isRegisterStudent' ">
+                        <div fxLayout="column" fxLayoutAlign="start center">
+                            
+                            <mat-form-field appearance="outline">
+                                <mat-label >First name</mat-label>
+                                <input [(ngModel)]="registerMap.studentsDetails.firstName"
+                             matInput  type="text"  formControlName="firstName" name="firstName"/>
+                            </mat-form-field>
+        
+                            
+                            <mat-form-field appearance="outline">
+                                <mat-label>Reg.No</mat-label>
+                                <input [(ngModel)]="registerMap.studentsDetails.registerNumber"
+                                    formControlName="registerNumber" name="registerNumber" matInput type="text"  required/>
+                                    
+                                </mat-form-field>
+        
+                            
+                            <mat-form-field appearance="outline">
+                                <mat-label>Create Password </mat-label>
+                                <input [(ngModel)]="registerMap.studentsDetails.password" formControlName="password" name="password"
+                                    matInput type="password" placeholder="ex:Abc@123"   required/>
+                                
+                            </mat-form-field>
+        
+                            
+                            <mat-form-field appearance="outline">
+                                <mat-label>Phone No </mat-label>
+                                <input [(ngModel)]="registerMap.studentsDetails.phoneNumber"
+                                    formControlName="phoneNumber" name="phoneNumber" matInput type="phone-number"  required/>
+                                   
+                                </mat-form-field>
+        
+                            
+                            <mat-form-field appearance="outline">
+                                <mat-label>College </mat-label>
+                                <input [(ngModel)]="registerMap.studentsDetails.college" formControlName="college" name="college"
+                                    matInput type="text"  required/>
+                                    
+                            </mat-form-field>
+        
+                            
+                            <mat-form-field appearance="outline">
+                                <mat-label>Studying Year </mat-label>
+                                <mat-select [(ngModel)]="registerMap.studentsDetails.year" formControlName="year" name="year" required>
+                                    <mat-option value="1st year">Year-I</mat-option>
+                                    <mat-option value="2nd year">Year-II</mat-option>
+                                    <mat-option value="3rd year">Year-III</mat-option>
+                                    <mat-option value="4th year">Year-IV</mat-option>
+                                    <mat-option value="5th year">Year-V</mat-option>
+                                  </mat-select>
+                                       
+                            </mat-form-field>
+        
+                        </div>
+        
+                        <div fxLayout="column" fxLayoutAlign="space-between center" style="margin-left:10px;">
+                            
+                            <mat-form-field appearance="outline">
+                                <mat-label>Last name</mat-label>
+                                <input [(ngModel)]="registerMap.studentsDetails.lastName" formControlName="lastName" name="lastName"
+                                    matInput type="text"  required/>
+                            </mat-form-field>
+        
+                            
+                            <mat-form-field appearance="outline">
+                                <mat-label>Email</mat-label>
+                                <input [(ngModel)]="registerMap.studentsDetails.email" formControlName="email" name="email"
+                                    matInput type="email"  required/>
+                            </mat-form-field>
+        
+                            
+                            <mat-form-field appearance="outline">
+                                <mat-label>Confirm Password </mat-label>
+                                <input [(ngModel)]="registerMap.studentsDetails.confirmPassword"
+                                    formControlName="confirmPassword" name="confirmPassword" matInput type="password"
+                                    placeholder="Confirm password" required/>
+                                    <mat-error *ngIf="isPasswordError">
+                                        *password must be same
+                                    </mat-error>
+                                    
+                            </mat-form-field>
+
+                            
+                            <mat-form-field appearance="outline">
+                                <mat-label>Gender</mat-label>
+                                <mat-select [(ngModel)]="registerMap.studentsDetails.gender" formControlName="gender" name="gender" required>
+                                    <mat-option value="Male">Male</mat-option>
+                                    <mat-option value="Female">Female</mat-option>
+                                    <mat-option value="Others">Others</mat-option>
+                                  </mat-select>
+                            </mat-form-field>
+        
+                            
+                            <mat-form-field appearance="outline">
+                                <mat-label>Department </mat-label>
+                                <input [(ngModel)]="registerMap.studentsDetails.department"
+                                    formControlName="department" name="department" matInput type="text"  required/>
+                            </mat-form-field>
+        
+        
+                            
+                            <mat-form-field appearance="outline">
+                                <mat-label class="label">Date of Birth </mat-label>
+                                
+                                    <input matInput [matDatepicker]="dob" [(ngModel)]="registerMap.studentsDetails.dob" formControlName="dob" name="dob">
+                                    
+                                    <mat-datepicker-toggle matIconSuffix [for]="dob"></mat-datepicker-toggle>
+                                    <mat-datepicker #dob></mat-datepicker>
+                            </mat-form-field>
+        
+        
+                        </div>
+        
+                    </div>
+                </form>
+
+
+                
+                <form [formGroup]="staffRegisterForm"  (ngSubmit)="saveUserDetails()" >
+                    <!-- This is for staff details -->
+                    <div fxLayout="row" fxLayoutAlign="start center" *ngIf="isRegisterOption == 'isRegisterStaff'"> 
+                        <div fxLayout="column" fxLayoutAlign="start center">
+                            
+                            <mat-form-field  appearance="outline">
+                                <mat-label>First name</mat-label>
+                                <input [(ngModel)]="registerMap.staffDetails.firstName" formControlName="staffFirstName" name="staffFirstName"
+                                    matInput type="text"  required/>
+                            </mat-form-field>
+        
+                            
+                            <mat-form-field  appearance="outline">
+                                <mat-label>Email</mat-label>
+                                <input [(ngModel)]="registerMap.staffDetails.email" formControlName="staffEmail" name="staffEmail"
+                                    matInput type="email"  required/>
+                            </mat-form-field>
+        
+                            
+                            <mat-form-field  appearance="outline">
+                                <mat-label>Password</mat-label>
+                                <input [(ngModel)]="registerMap.staffDetails.password" formControlName="staffPassword" name="staffPassword"
+                                    matInput type="password" placeholder="Create password" required/>
+                            </mat-form-field>
+        
+                            
+                            <mat-form-field  appearance="outline">
+                                <mat-label>Department</mat-label>
+                                <input [(ngModel)]="registerMap.staffDetails.department" formControlName="staffDepartment" name="staffDepartment" 
+                                    matInput type="text"  />
+                            </mat-form-field>
+                        </div>
+        
+                        <div fxLayout="column" fxLayoutAlign="space-between center" style="margin-left:10px;">
+                            
+                            <mat-form-field  appearance="outline">
+                                <mat-label>Last name</mat-label>
+                                <input [(ngModel)]="registerMap.staffDetails.lastName" formControlName="staffLastName" name="staffLastName"
+                                    matInput type="text"  required/>
+                            </mat-form-field>
+        
+                            
+                            <mat-form-field  appearance="outline">
+                                <mat-label>Phone Number</mat-label>
+                                <input [(ngModel)]="registerMap.staffDetails.phoneNumber" formControlName="staffPhoneNumber" name="staffPhoneNumber"
+                                    matInput type="text"  required/>
+                            </mat-form-field>
+        
+                            
+                            <mat-form-field  appearance="outline">
+                                <mat-label>Confirm password</mat-label>
+                                <input [(ngModel)]="registerMap.staffDetails.confirmPassword" formControlName="staffConfirmPassword" 
+                                    name="staffConfirmPassword" matInput type="password" required />
+                                    <mat-error *ngIf="registerMap.staffDetails.password != registerMap.staffDetails.confirmPassword && registerMap.staffDetails.password.length != registerMap.staffDetails.confirmPassword.length">
+                                        *password must be same
+                                    </mat-error>
+                            </mat-form-field>
+
+                            
+                            <mat-form-field  appearance="outline">
+                                <mat-label>College</mat-label>
+                                <input [(ngModel)]="registerMap.staffDetails.college" formControlName="staffCollege" name="staffCollege"
+                                    matInput type="text"  required/>
+                            </mat-form-field>
+                        </div>
+                    </div>
+        
+                </form>
+        
+        
+                <div fxLayout="row" fxLayoutAlign="center center"
+                    *ngIf="isRegisterOption == 'isRegisterStudent'  || isRegisterOption == 'isRegisterStaff'">
+                    <button  type="submit" mat-raised-button color="primary" style="width:40px;" (click)="saveUserDetails()" [disabled]="!registerForm.valid && isRegisterOption == 'isRegisterStudent' || !staffRegisterForm.valid && isRegisterOption == 'isRegisterStaff'" >Save
+                    </button>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button mat-raised-button color="warn"  style="width:40px;" (click)="goHome()" >Back
+                    </button>
+                </div>
+                
+        
+            </mat-card>
+        </div>
+    
+    <!-- </body>
+    </html> -->
+    

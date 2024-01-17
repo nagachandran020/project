@@ -1,0 +1,891 @@
+<app-toolbar></app-toolbar>
+
+<body>
+
+  <div class="introDiv"  fxLayout="column" fxLayoutAlign="center center" *ngIf="authService?.userDetails?.isTypeOfLogin == 'HOD'">  
+    <mat-card style="width:100%;background-color: burlywood;" >
+
+      <mat-card-content>
+
+        <mat-accordion class="example-headers-align" multi>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Computer Science
+              </mat-panel-title>
+              <mat-panel-description>
+                <!-- <mat-icon>account_circle</mat-icon> -->
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+              <div fxLayout="column">
+                <div fxLayout="row" fxLayoutAlign="start center" >
+                  <div style="margin-right: 100px;"><h2 >Department</h2></div>
+                  <div style="margin-right: 150px;"><h2 >Event</h2></div>
+                  <div style="margin-right: 215px;"><h2 >Venue</h2></div>
+                  <div style="margin-right: 200px;"><h2 >Date</h2></div>
+                  <div><h2 >Time</h2></div>
+                </div>
+              
+                <div *ngFor="let event of eventsDataArr; let i = index">
+
+                  <div *ngFor="let eachDept of event.BSC_CS; let l = index;" fxLayout="row" fxLayoutAlign="start center"
+                    fxLayoutGap="20px">
+                    <div fxFlex="100px">
+                      <h3>{{eachDept.deptName}}</h3>
+                    </div>
+                    <div><mat-form-field>
+                        <input matInput type="text" [(ngModel)]="eachDept.event" name="event" required />
+                      </mat-form-field></div>
+                    <div><mat-form-field>
+                        <input matInput type="text" [(ngModel)]="eachDept.venue" name="venue" required />
+                      </mat-form-field></div>
+                    <div><mat-form-field>
+                        <input matInput [matDatepicker]="date" [(ngModel)]="eachDept.date" name="date" required />
+                        <mat-datepicker-toggle matIconSuffix [for]="date"></mat-datepicker-toggle>
+                        <mat-datepicker #date></mat-datepicker>
+                      </mat-form-field></div>
+                    <div><mat-form-field>
+                        <input matInput type="time" [(ngModel)]="eachDept.time" name="time" required />
+                      </mat-form-field></div>
+                      <div>
+                        <button *ngIf="l == 0" mat-raised-button color="primary" (click)="addEvent('BSC_CS')">
+                          <mat-icon> {{eachDept.addEvent}}</mat-icon>Add
+                        </button>
+                      </div>
+
+                      <div>
+                        <button *ngIf="l > 0"  mat-raised-button color="warn" (click)="deleteEvent(i, l, 'BSC_CS')">
+                          <mat-icon> {{eachDept.deleteEvent}}</mat-icon>
+                        </button>
+                      </div>                     
+                      
+                  </div>
+
+                  <div *ngFor="let eachDept of event.MSC_CS; let m = index;" fxLayout="row" fxLayoutAlign="start center"
+                      fxLayoutGap="20px">
+                      <div fxFlex="100px">
+                        <h3>{{eachDept.deptName}}</h3>
+                      </div>
+                      <div><mat-form-field>
+                          <input matInput type="text" [(ngModel)]="eachDept.event" name="event" required />
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput type="text" [(ngModel)]="eachDept.venue" name="venue" required />
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput [matDatepicker]="date" [(ngModel)]="eachDept.date" name="date" required />
+                          <mat-datepicker-toggle matIconSuffix [for]="date"></mat-datepicker-toggle>
+                          <mat-datepicker #date></mat-datepicker>
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput type="time" [(ngModel)]="eachDept.time" name="time" required />
+                        </mat-form-field></div>
+                        <div>
+                          <button *ngIf="m == 0" mat-raised-button color="primary" (click)="addEvent('MSC_CS')">
+                            <mat-icon> {{eachDept.addEvent}}</mat-icon>Add
+                          </button>
+                        </div>
+
+                        <div>
+                          <button *ngIf="m > 0"  mat-raised-button color="warn" (click)="deleteEvent(i, m, 'MSC_CS')">
+                            <mat-icon> {{eachDept.deleteEvent}}</mat-icon>
+                          </button>
+                        </div>
+                        
+                  </div>
+
+                  <div *ngFor="let eachDept of event.MSC_IT; let n = index;" fxLayout="row" fxLayoutAlign="start center"
+                        fxLayoutGap="20px">
+                        <div fxFlex="100px">
+                          <h3>{{eachDept.deptName}}</h3>
+                        </div>
+                        <div><mat-form-field>
+                            <input matInput type="text" [(ngModel)]="eachDept.event" name="event" required />
+                          </mat-form-field></div>
+                        <div><mat-form-field>
+                            <input matInput type="text" [(ngModel)]="eachDept.venue" name="venue" required />
+                          </mat-form-field></div>
+                        <div><mat-form-field>
+                            <input matInput [matDatepicker]="date" [(ngModel)]="eachDept.date" name="date" required />
+                            <mat-datepicker-toggle matIconSuffix [for]="date"></mat-datepicker-toggle>
+                            <mat-datepicker #date></mat-datepicker>
+                          </mat-form-field></div>
+                        <div><mat-form-field>
+                            <input matInput type="time" [(ngModel)]="eachDept.time" name="time" required />
+                          </mat-form-field></div>
+
+                          <div>
+                            <button *ngIf="n == 0" mat-raised-button color="primary" (click)="addEvent('MSC_IT')">
+                              <mat-icon> {{eachDept.addEvent}}</mat-icon>Add
+                            </button>
+                          </div>
+
+                          <div>
+                            <button *ngIf="n > 0" mat-raised-button color="warn" (click)="deleteEvent(i, n, 'MSC_IT')">
+                              <mat-icon> {{eachDept.deleteEvent}}</mat-icon>
+                            </button>
+                          </div>
+                  </div>
+                        
+                </div>
+
+              </div>
+            </div>
+              
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <button type="submit"  mat-raised-button (click)="getEventsList()" color="warn">save</button>
+        </div> 
+        
+        </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Compuet Applications
+              </mat-panel-title>
+              <mat-panel-description>
+                <!-- <mat-icon>map</mat-icon> -->
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+        
+            <div fxLayout="column">
+              <div fxLayout="row" fxLayoutAlign="start center" >
+                <div style="margin-right: 100px;"><h2 >Department</h2></div>
+                <div style="margin-right: 100px;"><h2 >Event</h2></div>
+                <div style="margin-right: 100px;"><h2 >Venue</h2></div>
+                <div ><h2 >Date</h2></div>
+                <div ><h2 >Time</h2></div>
+              </div>
+            
+              <div *ngFor="let event of eventsDataArr; let i = index">
+
+                <div *ngFor="let eachDept of event.BCA_CA; let l = index;" fxLayout="row" fxLayoutAlign="start center"
+                  fxLayoutGap="20px">
+                  <div fxFlex="100px">
+                    <h3>{{eachDept.deptName}}</h3>
+                  </div>
+                  <div><mat-form-field>
+                      <input matInput type="text" [(ngModel)]="eachDept.event" name="event" required />
+                    </mat-form-field></div>
+                  <div><mat-form-field>
+                      <input matInput type="text" [(ngModel)]="eachDept.venue" name="venue" required />
+                    </mat-form-field></div>
+                  <div><mat-form-field>
+                      <input matInput [matDatepicker]="date" [(ngModel)]="eachDept.date" name="date" required />
+                      <mat-datepicker-toggle matIconSuffix [for]="date"></mat-datepicker-toggle>
+                      <mat-datepicker #date></mat-datepicker>
+                    </mat-form-field></div>
+                  <div><mat-form-field>
+                      <input matInput type="time" [(ngModel)]="eachDept.time" name="time" required />
+                    </mat-form-field></div>
+
+                    <div>
+                      <button *ngIf="l == 0" mat-raised-button color="primary" (click)="addEvent('BCA_CA')">
+                        <mat-icon> {{eachDept.addEvent}}</mat-icon>Add
+                      </button>
+                    </div>
+
+                    <div>
+                      <button *ngIf="l > 0" mat-raised-button color="warn" (click)="deleteEvent(i, l, 'BCA_CA')">
+                        <mat-icon> {{eachDept.deleteEvent}}</mat-icon>
+                      </button>
+                    </div>
+
+                    <div>
+                      <button *ngIf="l == 0" mat-icon-button color="accent" class="file-input-label" (click)="fileInput.click()">
+                        <mat-icon>{{eachDept.uploadIcon}}</mat-icon>
+                      </button>
+                      <input #fileInput type="file" [(ngModel)]="eachDept.fileUpload" style="display: none" name="fileUpload" />
+                    </div>
+
+                </div>
+
+                <div *ngFor="let eachDept of event.BCA_DS; let m = index;" fxLayout="row" fxLayoutAlign="start center"
+                    fxLayoutGap="20px">
+                    <div fxFlex="100px">
+                      <h3>{{eachDept.deptName}}</h3>
+                    </div>
+                    <div><mat-form-field>
+                        <input matInput type="text" [(ngModel)]="eachDept.event" name="event" required />
+                      </mat-form-field></div>
+                    <div><mat-form-field>
+                        <input matInput type="text" [(ngModel)]="eachDept.venue" name="venue" required />
+                      </mat-form-field></div>
+                    <div><mat-form-field>
+                        <input matInput [matDatepicker]="date" [(ngModel)]="eachDept.date" name="date" required />
+                        <mat-datepicker-toggle matIconSuffix [for]="date"></mat-datepicker-toggle>
+                        <mat-datepicker #date></mat-datepicker>
+                      </mat-form-field></div>
+                    <div><mat-form-field>
+                        <input matInput type="time" [(ngModel)]="eachDept.time" name="time" required />
+                      </mat-form-field></div>
+                      <div>
+                        <button *ngIf="m == 0" mat-raised-button color="primary" (click)="addEvent('BCA_DS')">
+                          <mat-icon> {{eachDept.addEvent}}</mat-icon>Add
+                        </button>
+                      </div>
+
+                      <div>
+                        <button *ngIf="m > 0" mat-raised-button color="warn" (click)="deleteEvent(i, m, 'BCA_DS')">
+                          <mat-icon> {{eachDept.deleteEvent}}</mat-icon>
+                        </button>
+                      </div>
+
+                      <div>
+                        <button *ngIf="m == 0" mat-icon-button color="accent" class="file-input-label" (click)="fileInput.click()">
+                          <mat-icon>{{eachDept.uploadIcon}}</mat-icon>
+                        </button>
+                        <input #fileInput type="file" [(ngModel)]="eachDept.fileUpload" style="display: none" name="fileUpload" />
+                      </div>
+
+                </div>
+
+                <div *ngFor="let eachDept of event.MCA_CA; let n = index;" fxLayout="row" fxLayoutAlign="start center"
+                      fxLayoutGap="20px">
+                      <div fxFlex="100px">
+                        <h3>{{eachDept.deptName}}</h3>
+                      </div>
+                      <div><mat-form-field>
+                          <input matInput type="text" [(ngModel)]="eachDept.event" name="event" required />
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput type="text" [(ngModel)]="eachDept.venue" name="venue" required />
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput [matDatepicker]="date" [(ngModel)]="eachDept.date" name="date" required />
+                          <mat-datepicker-toggle matIconSuffix [for]="date"></mat-datepicker-toggle>
+                          <mat-datepicker #date></mat-datepicker>
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput type="time" [(ngModel)]="eachDept.time" name="time" required />
+                        </mat-form-field></div>
+
+                        <div>
+                          <button *ngIf="n == 0" mat-raised-button color="primary" (click)="addEvent('MCA_CA')">
+                            <mat-icon> {{eachDept.addEvent}}</mat-icon>Add
+                          </button>
+                        </div>
+
+                        <div>
+                          <button *ngIf="n > 0" mat-raised-button color="warn" (click)="deleteEvent(i, n, 'MCA_CA')">
+                            <mat-icon> {{eachDept.deleteEvent}}</mat-icon>
+                          </button>
+                        </div>
+
+                        <div>
+                          <button *ngIf="n == 0" mat-icon-button color="accent" class="file-input-label" (click)="fileInput.click()">
+                            <mat-icon>{{eachDept.uploadIcon}}</mat-icon>
+                          </button>
+                          <input #fileInput type="file" [(ngModel)]="eachDept.fileUpload" style="display: none" name="fileUpload" />
+                        </div>
+
+                </div>
+                   
+                <div *ngFor="let eachDept of event.MSC_ADS; let o = index;" fxLayout="row" fxLayoutAlign="start center"
+                      fxLayoutGap="20px">
+                      <div fxFlex="100px">
+                        <h3>{{eachDept.deptName}}</h3>
+                      </div>
+                      <div><mat-form-field>
+                          <input matInput type="text" [(ngModel)]="eachDept.event" name="event" required />
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput type="text" [(ngModel)]="eachDept.venue" name="venue" required />
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput [matDatepicker]="date" [(ngModel)]="eachDept.date" name="date" required />
+                          <mat-datepicker-toggle matIconSuffix [for]="date"></mat-datepicker-toggle>
+                          <mat-datepicker #date></mat-datepicker>
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput type="time" [(ngModel)]="eachDept.time" name="time" required />
+                        </mat-form-field></div>
+
+                        <div>
+                          <button *ngIf="o == 0" mat-raised-button color="primary" (click)="addEvent('MSC_ADS')">
+                            <mat-icon> {{eachDept.addEvent}}</mat-icon>Add
+                          </button>
+                        </div>
+
+                        <div>
+                          <button *ngIf="o > 0" mat-raised-button color="warn" (click)="deleteEvent(i, o, 'MSC_ADS')">
+                            <mat-icon> {{eachDept.deleteEvent}}</mat-icon>
+                          </button>
+                        </div>
+
+                        <div>
+                          <button *ngIf="o == 0" mat-icon-button color="accent" class="file-input-label" (click)="fileInput.click()">
+                            <mat-icon>{{eachDept.uploadIcon}}</mat-icon>
+                          </button>
+                          <input #fileInput type="file" [(ngModel)]="eachDept.fileUpload" style="display: none" name="fileUpload" />
+                        </div>
+
+                </div>
+                      
+              </div>
+              
+              
+             
+
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="center center">
+            <button type="submit"  mat-raised-button (click)="getEventsList()" color="warn">save</button>
+          </div>
+
+          </mat-expansion-panel>
+        
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Commerce
+              </mat-panel-title>
+              <mat-panel-description>
+                <!-- <mat-icon>date_range</mat-icon> -->
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div fxLayout="column">
+              <div fxLayout="row" fxLayoutAlign="start center" >
+                <div style="margin-right: 100px;"><h2 >Department</h2></div>
+                <div style="margin-right: 100px;"><h2 >Event</h2></div>
+                <div style="margin-right: 100px;"><h2 >Venue</h2></div>
+                <div ><h2 >Date</h2></div>
+                <div ><h2 >Time</h2></div>
+              </div>
+            
+              <div *ngFor="let event of eventsDataArr; let i = index">
+
+                <div *ngFor="let eachDept of event.BCOM_COM; let l = index;" fxLayout="row" fxLayoutAlign="start center"
+                  fxLayoutGap="20px">
+                  <div fxFlex="100px">
+                    <h3>{{eachDept.deptName}}</h3>
+                  </div>
+                  <div><mat-form-field>
+                      <input matInput type="text" [(ngModel)]="eachDept.event" name="event" required />
+                    </mat-form-field></div>
+                  <div><mat-form-field>
+                      <input matInput type="text" [(ngModel)]="eachDept.venue" name="venue" required />
+                    </mat-form-field></div>
+                  <div><mat-form-field>
+                      <input matInput [matDatepicker]="date" [(ngModel)]="eachDept.date" name="date" required />
+                      <mat-datepicker-toggle matIconSuffix [for]="date"></mat-datepicker-toggle>
+                      <mat-datepicker #date></mat-datepicker>
+                    </mat-form-field></div>
+                  <div><mat-form-field>
+                      <input matInput type="time" [(ngModel)]="eachDept.time" name="time" required />
+                    </mat-form-field></div>
+                    <div>
+                      <button *ngIf="l == 0" mat-raised-button color="primary" (click)="addEvent('BCOM_COM')">
+                        <mat-icon> {{eachDept.addEvent}}</mat-icon>Add
+                      </button>
+                    </div>
+
+                    <div>
+                      <button *ngIf="l > 0" mat-raised-button color="warn" (click)="deleteEvent(i, l, 'BCOM_COM')">
+                        <mat-icon> {{eachDept.deleteEvent}}</mat-icon>
+                      </button>
+                    </div>
+
+                   
+                    <div>
+                      <button *ngIf="l == 0" mat-icon-button color="accent" class="file-input-label" (click)="fileInput.click()">
+                        <mat-icon>{{eachDept.uploadIcon}}</mat-icon>
+                      </button>
+                      <input #fileInput type="file" [(ngModel)]="eachDept.fileUpload" style="display: none" name="fileUpload" />
+                    </div>
+
+                </div>
+
+                <div *ngFor="let eachDept of event.BCOM_INF; let m = index;" fxLayout="row" fxLayoutAlign="start center"
+                    fxLayoutGap="20px">
+                    <div fxFlex="100px">
+                      <h3>{{eachDept.deptName}}</h3>
+                    </div>
+                    <div><mat-form-field>
+                        <input matInput type="text" [(ngModel)]="eachDept.event" name="event" required />
+                      </mat-form-field></div>
+                    <div><mat-form-field>
+                        <input matInput type="text" [(ngModel)]="eachDept.venue" name="venue" required />
+                      </mat-form-field></div>
+                    <div><mat-form-field>
+                        <input matInput [matDatepicker]="date" [(ngModel)]="eachDept.date" name="date" required />
+                        <mat-datepicker-toggle matIconSuffix [for]="date"></mat-datepicker-toggle>
+                        <mat-datepicker #date></mat-datepicker>
+                      </mat-form-field></div>
+                    <div><mat-form-field>
+                        <input matInput type="time" [(ngModel)]="eachDept.time" name="time" required />
+                      </mat-form-field></div>
+                      <div>
+                        <button *ngIf="m == 0" mat-raised-button color="primary" (click)="addEvent('BCOM_INF')">
+                          <mat-icon> {{eachDept.addEvent}}</mat-icon>Add
+                        </button>
+                      </div>
+
+                      <div>
+                        <button *ngIf="m > 0" mat-raised-button color="warn" (click)="deleteEvent(i, m, 'BCOM_INF')">
+                          <mat-icon> {{eachDept.deleteEvent}}</mat-icon>
+                        </button>
+                      </div>
+
+                      <div>
+                        <button *ngIf="m == 0" mat-icon-button color="accent" class="file-input-label" (click)="fileInput.click()">
+                          <mat-icon>{{eachDept.uploadIcon}}</mat-icon>
+                        </button>
+                        <input #fileInput type="file" [(ngModel)]="eachDept.fileUpload" style="display: none" name="fileUpload" />
+                      </div>
+                </div>
+
+                <div *ngFor="let eachDept of event.BCOM_INTER; let n = index;" fxLayout="row" fxLayoutAlign="start center"
+                      fxLayoutGap="20px">
+                      <div fxFlex="100px">
+                        <h3>{{eachDept.deptName}}</h3>
+                      </div>
+                      <div><mat-form-field>
+                          <input matInput type="text" [(ngModel)]="eachDept.event" name="event" required />
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput type="text" [(ngModel)]="eachDept.venue" name="venue" required />
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput [matDatepicker]="date" [(ngModel)]="eachDept.date" name="date" required />
+                          <mat-datepicker-toggle matIconSuffix [for]="date"></mat-datepicker-toggle>
+                          <mat-datepicker #date></mat-datepicker>
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput type="time" [(ngModel)]="eachDept.time" name="time" required />
+                        </mat-form-field></div>
+
+                        <div>
+                          <button *ngIf="n == 0" mat-raised-button color="primary" (click)="addEvent('BCOM_INTER')">
+                            <mat-icon> {{eachDept.addEvent}}</mat-icon>Add
+                          </button>
+                        </div>
+
+                        <div>
+                          <button *ngIf="n > 0" mat-raised-button color="warn" (click)="deleteEvent(i, n, 'BCOM_INTER')">
+                            <mat-icon> {{eachDept.deleteEvent}}</mat-icon>
+                          </button>
+                        </div>
+
+                        <div>
+                          <button *ngIf="n == 0" mat-icon-button color="accent" class="file-input-label" (click)="fileInput.click()">
+                            <mat-icon>{{eachDept.uploadIcon}}</mat-icon>
+                          </button>
+                          <input #fileInput type="file" [(ngModel)]="eachDept.fileUpload" style="display: none" name="fileUpload" />
+                        </div>
+
+                </div>
+                   
+                <div *ngFor="let eachDept of event.BCOM_PROF; let o = index;" fxLayout="row" fxLayoutAlign="start center"
+                      fxLayoutGap="20px">
+                      <div fxFlex="100px">
+                        <h3>{{eachDept.deptName}}</h3>
+                      </div>
+                      <div><mat-form-field>
+                          <input matInput type="text" [(ngModel)]="eachDept.event" name="event" required />
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput type="text" [(ngModel)]="eachDept.venue" name="venue" required />
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput [matDatepicker]="date" [(ngModel)]="eachDept.date" name="date" required />
+                          <mat-datepicker-toggle matIconSuffix [for]="date"></mat-datepicker-toggle>
+                          <mat-datepicker #date></mat-datepicker>
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput type="time" [(ngModel)]="eachDept.time" name="time" required />
+                        </mat-form-field></div>
+
+                        <div>
+                          <button *ngIf="o == 0" mat-raised-button color="primary" (click)="addEvent('BCOM_PROF')">
+                            <mat-icon> {{eachDept.addEvent}}</mat-icon>Add
+                          </button>
+                        </div>
+
+                        <div>
+                          <button *ngIf="o > 0" mat-raised-button color="warn" (click)="deleteEvent(i, o, 'BCOM_PROF')">
+                            <mat-icon> {{eachDept.deleteEvent}}</mat-icon>
+                          </button>
+                        </div>
+
+                        <div>
+                          <button *ngIf="o == 0" mat-icon-button color="accent" class="file-input-label" (click)="fileInput.click()">
+                            <mat-icon>{{eachDept.uploadIcon}}</mat-icon>
+                          </button>
+                          <input #fileInput type="file" [(ngModel)]="eachDept.fileUpload" style="display: none" name="fileUpload" />
+                        </div>
+
+                </div>
+                      
+                <div *ngFor="let eachDept of event.BCOM_STR; let p = index;" fxLayout="row" fxLayoutAlign="start center"
+                      fxLayoutGap="20px">
+                      <div fxFlex="100px">
+                        <h3>{{eachDept.deptName}}</h3>
+                      </div>
+                      <div><mat-form-field>
+                          <input matInput type="text" [(ngModel)]="eachDept.event" name="event" required />
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput type="text" [(ngModel)]="eachDept.venue" name="venue" required />
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput [matDatepicker]="date" [(ngModel)]="eachDept.date" name="date" required />
+                          <mat-datepicker-toggle matIconSuffix [for]="date"></mat-datepicker-toggle>
+                          <mat-datepicker #date></mat-datepicker>
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput type="time" [(ngModel)]="eachDept.time" name="time" required />
+                        </mat-form-field></div>
+
+                        <div>
+                          <button *ngIf="p == 0" mat-raised-button color="primary" (click)="addEvent('BCOM_STR')">
+                            <mat-icon> {{eachDept.addEvent}}</mat-icon>Add
+                          </button>
+                        </div>
+
+                        <div>
+                          <button *ngIf="p > 0" mat-raised-button color="warn" (click)="deleteEvent(i, p, 'BCOM_STR')">
+                            <mat-icon> {{eachDept.deleteEvent}}</mat-icon>
+                          </button>
+                        </div>
+
+                        <div>
+                          <button *ngIf="p == 0" mat-icon-button color="accent" class="file-input-label" (click)="fileInput.click()">
+                            <mat-icon>{{eachDept.uploadIcon}}</mat-icon>
+                          </button>
+                          <input #fileInput type="file" [(ngModel)]="eachDept.fileUpload" style="display: none" name="fileUpload" />
+                        </div>
+
+                </div>
+
+                <div *ngFor="let eachDept of event.BCOM_CORP; let q = index;" fxLayout="row" fxLayoutAlign="start center"
+                      fxLayoutGap="20px">
+                      <div fxFlex="100px">
+                        <h3>{{eachDept.deptName}}</h3>
+                      </div>
+                      <div><mat-form-field>
+                          <input matInput type="text" [(ngModel)]="eachDept.event" name="event" required />
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput type="text" [(ngModel)]="eachDept.venue" name="venue" required />
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput [matDatepicker]="date" [(ngModel)]="eachDept.date" name="date" required />
+                          <mat-datepicker-toggle matIconSuffix [for]="date"></mat-datepicker-toggle>
+                          <mat-datepicker #date></mat-datepicker>
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput type="time" [(ngModel)]="eachDept.time" name="time" required />
+                        </mat-form-field></div>
+
+                        <div>
+                          <button *ngIf="q == 0" mat-raised-button color="primary" (click)="addEvent('BCOM_CORP')">
+                            <mat-icon> {{eachDept.addEvent}}</mat-icon>Add
+                          </button>
+                        </div>
+
+                        <div>
+                          <button *ngIf="q > 0" mat-raised-button color="warn" (click)="deleteEvent(i, q, 'BCOM_CORP')">
+                            <mat-icon> {{eachDept.deleteEvent}}</mat-icon>
+                          </button>
+                        </div>
+
+                        <div>
+                          <button *ngIf="q == 0" mat-icon-button color="accent" class="file-input-label" (click)="fileInput.click()">
+                            <mat-icon>{{eachDept.uploadIcon}}</mat-icon>
+                          </button>
+                          <input #fileInput type="file" [(ngModel)]="eachDept.fileUpload" style="display: none" name="fileUpload" />
+                        </div>
+                </div>
+
+                <div *ngFor="let eachDept of event.BCOM_AC; let r = index;" fxLayout="row" fxLayoutAlign="start center"
+                      fxLayoutGap="20px">
+                      <div fxFlex="100px">
+                        <h3>{{eachDept.deptName}}</h3>
+                      </div>
+                      <div><mat-form-field>
+                          <input matInput type="text" [(ngModel)]="eachDept.event" name="event" required />
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput type="text" [(ngModel)]="eachDept.venue" name="venue" required />
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput [matDatepicker]="date" [(ngModel)]="eachDept.date" name="date" required />
+                          <mat-datepicker-toggle matIconSuffix [for]="date"></mat-datepicker-toggle>
+                          <mat-datepicker #date></mat-datepicker>
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput type="time" [(ngModel)]="eachDept.time" name="time" required />
+                        </mat-form-field></div>
+
+                        <div>
+                          <button *ngIf="r == 0" mat-raised-button color="primary" (click)="addEvent('BCOM_AC')">
+                            <mat-icon> {{eachDept.addEvent}}</mat-icon>Add
+                          </button>
+                        </div>
+
+                        <div>
+                          <button *ngIf="r > 0" mat-raised-button color="warn" (click)="deleteEvent(i, r, 'BCOM_AC' )">
+                            <mat-icon> {{eachDept.deleteEvent}}</mat-icon>
+                          </button>
+                        </div>
+
+                        <div>
+                          <button *ngIf="r == 0" mat-icon-button color="accent" class="file-input-label" (click)="fileInput.click()">
+                            <mat-icon>{{eachDept.uploadIcon}}</mat-icon>
+                          </button>
+                          <input #fileInput type="file" [(ngModel)]="eachDept.fileUpload" style="display: none" name="fileUpload" />
+                        </div>
+
+                </div>
+
+                <div *ngFor="let eachDept of event.MCOM_COM; let s = index;" fxLayout="row" fxLayoutAlign="start center"
+                      fxLayoutGap="20px">
+                      <div fxFlex="100px">
+                        <h3>{{eachDept.deptName}}</h3>
+                      </div>
+                      <div><mat-form-field>
+                          <input matInput type="text" [(ngModel)]="eachDept.event" name="event" required />
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput type="text" [(ngModel)]="eachDept.venue" name="venue" required />
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput [matDatepicker]="date" [(ngModel)]="eachDept.date" name="date" required />
+                          <mat-datepicker-toggle matIconSuffix [for]="date"></mat-datepicker-toggle>
+                          <mat-datepicker #date></mat-datepicker>
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput type="time" [(ngModel)]="eachDept.time" name="time" required />
+                        </mat-form-field></div>
+
+                        <div>
+                          <button *ngIf="s == 0" mat-raised-button color="primary" (click)="addEvent('MCOM_COM')">
+                            <mat-icon> {{eachDept.addEvent}}</mat-icon>Add
+                          </button>
+                        </div>
+
+                        <div>
+                          <button  *ngIf="s > 0" mat-raised-button color="warn" (click)="deleteEvent(i, s, 'MCOM_COM' )">
+                            <mat-icon> {{eachDept.deleteEvent}}</mat-icon>
+                          </button>
+                        </div>
+
+                        <div>
+                          <button *ngIf="s == 0" mat-icon-button color="accent" class="file-input-label" (click)="fileInput.click()">
+                            <mat-icon>{{eachDept.uploadIcon}}</mat-icon>
+                          </button>
+                          <input #fileInput type="file" [(ngModel)]="eachDept.fileUpload" style="display: none" name="fileUpload" />
+                        </div>
+
+                </div>
+
+                <div *ngFor="let eachDept of event.MCOM_AC; let t = index;" fxLayout="row" fxLayoutAlign="start center"
+                      fxLayoutGap="20px">
+                      <div fxFlex="100px">
+                    
+                        <h3>{{eachDept.deptName}}</h3>
+                      </div>
+                      <div><mat-form-field>
+                          <input matInput type="text" [(ngModel)]="eachDept.event" name="event" required />
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput type="text" [(ngModel)]="eachDept.venue" name="venue" required />
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput [matDatepicker]="date" [(ngModel)]="eachDept.date" name="date" required />
+                          <mat-datepicker-toggle matIconSuffix [for]="date"></mat-datepicker-toggle>
+                          <mat-datepicker #date></mat-datepicker>
+                        </mat-form-field></div>
+                      <div><mat-form-field>
+                          <input matInput type="time" [(ngModel)]="eachDept.time" name="time" required />
+                        </mat-form-field></div>
+
+                        <div>
+                          <button  *ngIf="t == 0" mat-raised-button color="primary" (click)="addEvent('MCOM_AC')">
+                            <mat-icon> {{eachDept.addEvent}}</mat-icon>Add
+                          </button>
+                        </div>
+
+                        <div>
+                          <button *ngIf="t > 0" mat-raised-button color="warn" (click)="deleteEvent(i, t, 'MCOM_AC')">
+                            <mat-icon> {{eachDept.deleteEvent}}</mat-icon>
+                          </button>
+                        </div>
+
+                        <div>
+                          <button *ngIf="t == 0" mat-icon-button color="accent" class="file-input-label" (click)="fileInput.click()">
+                            <mat-icon>{{eachDept.uploadIcon}}</mat-icon>
+                          </button>
+                          <input #fileInput type="file" [(ngModel)]="eachDept.fileUpload" style="display: none" name="fileUpload" />
+                        </div>
+
+                </div>
+
+
+              </div>
+                
+
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="center center">
+            <button type="submit"  mat-raised-button (click)="getEventsList()" color="warn">save</button>
+          </div>
+
+          </mat-expansion-panel>
+        </mat-accordion>
+      
+       
+      </mat-card-content>
+  
+     
+    </mat-card>
+
+  </div>
+
+
+  <!---HOD Permission-->
+
+
+  <mat-card class="events-card1"  *ngIf="authService?.userDetails?.isTypeOfLogin == 'HOD'">
+    <div fxLayout="column">
+      <div fxLayout="row" fxLayoutAlign="center center" class="header-row1">
+        <div fxFlex="25%">
+          <h2>Department</h2>
+        </div>
+        <div fxFlex="20%">
+          <h2>Event</h2>
+        </div>
+        <div fxFlex="20%">
+          <h2>Venue</h2>
+        </div>
+        <div fxFlex="15%">
+          <h2>Date</h2>
+        </div>
+        <div fxFlex="10%">
+          <h2>Time</h2>
+        </div>
+        <div fxFlex="10%">
+          <h2>Brochure</h2>
+        </div>
+      </div>
+  
+      <ng-container>
+        <div *ngFor="let item of permissionDataArr; let i = index;">
+          <div fxLayout="row" fxLayoutAlign="start center" class="content-row1">
+            <div fxFlex="25%">
+              <p>{{ item.deptName }}</p>
+            </div>
+            <div fxFlex="20%">
+              <p>{{ item.event }}</p>
+            </div>
+            <div fxFlex="20%">
+              <p>{{ item.venue }}</p>
+            </div>
+            <div fxFlex="15%">
+              <p>{{ item.date }}</p>
+            </div>
+            <div fxFlex="10%">
+              <p>{{ item.time }}</p>
+            </div>
+            <div fxFlex="10%">
+                <button  mat-icon-button color="accent" class="file-input-label" (click)="fileInput.click()">
+                  <mat-icon>{{item.uploadIcon}}</mat-icon>
+                </button>
+                <input #fileInput type="file" (change)="onFileSelected($event, i)"  style="display: none" name="fileUpload" />
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px">
+        <button mat-raised-button color="warn" (click)="publishForm()">Publish</button>
+        <!-- <div fxFlex></div> Add a flexible div to push the next button to the right -->
+      </div>
+      
+    </div>
+  </mat-card>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+        <!-------Dean page---------->
+        <mat-card class="events-card" *ngIf="authService?.userDetails?.isTypeOfLogin == 'DEAN'">
+          <div fxLayout="column">
+            <div fxLayout="row" fxLayoutAlign="center center" class="header-row">
+              <div fxFlex="25%">
+                <h2>Department</h2>
+              </div>
+              <div fxFlex="20%">
+                <h2>Event</h2>
+              </div>
+              <div fxFlex="20%">
+                <h2>Venue</h2>
+              </div>
+              <div fxFlex="15%">
+                <h2>Date</h2>
+              </div>
+              <div fxFlex="10%">
+                <h2>Time</h2>
+              </div>
+              <div fxFlex="10%">
+                <h2>Approval</h2>
+              </div>
+            </div>
+        
+            <ng-container *ngFor="let dept of finalDataArr let i = index;">
+              <div *ngFor="let item of dept; let j = index;">
+                <div fxLayout="row" fxLayoutAlign="start center" class="content-row">
+                  <div fxFlex="25%">
+                    <p>{{ item.deptName }}</p>
+                  </div>
+                  <div fxFlex="20%">
+                    <p>{{ item.event }}</p>
+                  </div>
+                  <div fxFlex="20%">
+                    <p>{{ item.venue }}</p>
+                  </div>
+                  <div fxFlex="15%">
+                    <p>{{ item.date }}</p>
+                  </div>
+                  <div fxFlex="10%">
+                    <p>{{ item.time }}</p>
+                  </div>
+                  <div fxFlex="10%">
+                    <button mat-raised-button [ngStyle]="{ 'color': item.isApproved ? 'red': 'green' }" ([ngModel])="item.isApproved" (click)="item.isApproved = !item.isApproved;">
+                      <mat-icon></mat-icon>{{item.isApproved ? 'No' : 'Yes'}} 
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+            <div>
+              <div fxLayout="row" fxLayoutAlign="center center">
+                <button mat-raised-button color="warn" (click)="deanSettings()">Save</button>
+              </div>
+          </div>
+          </div>
+        </mat-card>
+        
+        
+        
+        
+        
+    
+</body>
+
+
+
+
+

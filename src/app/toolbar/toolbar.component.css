@@ -1,0 +1,14 @@
+body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    transition: background-image 0.5s ease-in-out;
+}
+
+.my-element {
+    /* background-image: url('https://vectorlogoseek.com/wp-content/uploads/2020/07/spam-brand-vector-logo.png'); */
+    
+
+  }
+
+  

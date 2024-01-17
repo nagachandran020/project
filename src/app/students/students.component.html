@@ -1,0 +1,75 @@
+
+    <app-toolbar></app-toolbar>
+
+    <mat-card class="events-card">
+        <div fxLayout="column">
+          <div fxLayout="row" fxLayoutAlign="start center" class="header-row">
+            <div fxFlex="25%">
+              <h2>Department</h2>
+            </div>
+            <div fxFlex="20%">
+              <h2>Event</h2>
+            </div>
+            <div fxFlex="20%">
+              <h2>Venue</h2>
+            </div>
+            <div fxFlex="15%">
+              <h2>Date</h2>
+            </div>
+            <div fxFlex="10%">
+              <h2>Time</h2>
+            </div>
+            <div fxFlex="15%">
+              <h2>Apply</h2>
+            </div>
+            <div fxFlex="10%">
+              <h2>Brochure</h2>
+            </div>
+              
+          </div>
+      
+          <ng-container>
+            <div *ngFor="let item of finalDataArr; let i = index" >
+              <div fxLayout="row" fxLayoutAlign="start center" class="content-row">
+                <div fxFlex="25%">
+                  <p>{{ item.deptName }}</p>
+                </div>
+                <div fxFlex="20%">
+                  <p>{{ item.event }}</p>
+                </div>
+                <div fxFlex="20%">
+                  <p>{{ item.venue }}</p>
+                </div>
+                <div fxFlex="15%">
+                  <p>{{ item.date|date }}</p>
+                </div>
+                <div fxFlex="10%">
+                  <p>{{ item.time }}</p>
+                </div>
+                <div fxFlex="15%">
+                  <button mat-raised-button style="color:green" (click)="getApply()">
+                    Apply
+                  </button>
+                </div>
+                <div fxFlex="10%">
+                  <button mat-icon-button color="primary" (click)="onDownload(i)">
+                    <mat-icon>{{item.downloadIcon}}</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </mat-card>
+
+
+
+
+
+
+<!-- 
+<div class="video-background">
+    <video autoplay muted loop>
+      <source [src]="videoUrl" type="video/mp4">
+    </video>
+  </div> -->

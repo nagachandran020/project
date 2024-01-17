@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>User is already exists</h1>
+<div mat-dialog-content>
+<h2>hey</h2>
+<div mat-dialog-actions>
+    <h2 *ngIf="data.name">{{data.name}}</h2><br>
+    <h2 *ngIf="data.password">{{data.password}}</h2><br>
+    <button (click)="closeDialog()">close</button>
+</div>
+</div>
